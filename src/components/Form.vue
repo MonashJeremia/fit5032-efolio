@@ -5,23 +5,23 @@
                 <h1 class="text-center">User Information Form</h1>
                 <form @submit.prevent="submitForm">
                     <div class="row mb-3">
-                        <div class="col-md-6">
+                        <div class="col-12 col-sm-6 mb-3 mb-sm-0">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control" id="username" v-model="formData.username">
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-12 col-sm-6">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password" v-model="formData.password">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-md-6">
+                        <div class="col-12 col-sm-6 mb-3 mb-sm-0">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="isAustralian" v-model="formData.isAustralian">
                                 <label class="form-check-label" for="isAustralian">Australian Resident?</label>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-12 col-sm-6">
                             <label for="gender" class="form-label">Gender</label>
                             <select class="form-select" id="gender" v-model="formData.gender">
                                 <option value="male">Male</option>
@@ -60,8 +60,10 @@
     </div>
 </template>
 
+
 <script setup>
 import { ref } from 'vue';
+
 
 const formData = ref({
     username: '',
@@ -78,6 +80,15 @@ const submitForm = () => {
         ...formData.value
     });
 };
+
+// Clear button logic: resets all form fields
+const clearForm = () => {
+    formData.value.username = '';
+    formData.value.password = '';
+    formData.value.isAustralian = false;
+    formData.value.gender = '';
+    formData.value.reason = '';
+};
 </script>
 
 <style scoped>
@@ -90,7 +101,7 @@ const submitForm = () => {
     background-color: #275FDA;
     color: white;
     padding: 10px;
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 10 0;
 }
 .list-group-item {
     padding: 10px;
