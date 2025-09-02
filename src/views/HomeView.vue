@@ -9,7 +9,8 @@ const formData = ref({
   confirmPassword: '', // Add confirm password
   isAustralian: false,
   reason: '',
-  gender: ''
+  gender: '',
+  suburb: 'Clayton'
 })
 
 const submittedCards = ref([])
@@ -83,6 +84,21 @@ const validateConfirmPassword = (blur) => {
     errors.value.confirmPassword = null
   }
 }
+
+const validateReason = (blur) => {
+  if (formData.value.reason.length < 10) {
+    if (blur) errors.value.reason = 'Reason must be at least 10 characters long'
+  } else {
+    errors.value.reason = null
+  }
+}
+
+const checkForFriend = () => {
+  if (formData.value.reason.toLowerCase().includes('friend')) {
+    errors.value.reason = '<span style="color: green;">Great to have a friend</span>'
+  }
+}
+
 </script>
 
 <template>
@@ -165,14 +181,23 @@ const validateConfirmPassword = (blur) => {
           </div>
 
           <!-- Reason for joining -->
-          <div class="mb-3">
+            <div class="mb-3">
             <label for="reason" class="form-label">Reason for joining</label>
             <textarea
               class="form-control"
               id="reason"
               rows="3"
               v-model="formData.reason"
+              @blur="() => validateReason(true)"
+              @input="() => { validateReason(false); checkForFriend(); }"
             ></textarea>
+            <div v-if="errors.reason" class="text-danger" v-html="errors.reason"></div>
+            </div>
+            
+           <!--Suburb--> 
+          <div class="mb-3">
+            <label for="reason" class="form-label">Suburb</label>
+            <input type="text" class="form-control" id="suburb" v-bind:value="formData.suburb" />
           </div>
 
           <div class="text-center">
