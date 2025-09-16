@@ -17,6 +17,11 @@
             >Firebase Login</router-link
           >
         </li>
+        <li class="nav-item">
+          <router-link to="/FireSignUp" class="nav-link" active-class="active"
+            >Firebase Sign Up</router-link
+          >
+        </li>
       </ul>
     </header>
   </div>
