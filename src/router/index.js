@@ -16,13 +16,13 @@ const routes = [
     component: AboutView
   },
   {
-    path: '/Firelogin',
-    name: 'Firelogin',
+    path: '/FireLogin',
+    name: 'FireLogin',
     component: FirebaseSigninView
   },
   {
-    path: '/FireRegister',
-    name: 'FireRegister',
+    path: '/FireSignUp',
+    name: 'FireSignUp',
     component: FirebaseRegisterView
   }
 ]

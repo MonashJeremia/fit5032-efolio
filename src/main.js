@@ -15,25 +15,18 @@ app.mount('#app')
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
-import { getAuth, connectAuthEmulator } from 'firebase/auth'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyDuzUYbLooj2HJqhnriK-WOIiFSHJawbZU',
-  authDomain: 'fit5032-week6-12aca.firebaseapp.com',
-  projectId: 'fit5032-week6-12aca',
-  storageBucket: 'fit5032-week6-12aca.firebasestorage.app',
-  messagingSenderId: '840951311961',
-  appId: '1:840951311961:web:fda5fc52662989f92bcb48'
+  apiKey: 'AIzaSyDiUHRIpQ-nZL_jFwj88vPTlY5h2cMtR4k',
+  authDomain: 'week7-jeremia.firebaseapp.com',
+  projectId: 'week7-jeremia',
+  storageBucket: 'week7-jeremia.firebasestorage.app',
+  messagingSenderId: '392435116850',
+  appId: '1:392435116850:web:00dece6890f6567697052b'
 }
 
 // Initialize Firebase
-const firebaseApp = initializeApp(firebaseConfig)
-
-// Connect to emulator in development
-if (location.hostname === 'localhost') {
-  const auth = getAuth(firebaseApp)
-  connectAuthEmulator(auth, 'http://localhost:9099')
-}
+initializeApp(firebaseConfig)
