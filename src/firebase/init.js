@@ -6,12 +6,12 @@ import { getFirestore } from 'firebase/firestore'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyDiUHRIpQ-nZL_jFwj88vPTlY5h2cMtR4k',
-  authDomain: 'week7-jeremia.firebaseapp.com',
-  projectId: 'week7-jeremia',
-  storageBucket: 'week7-jeremia.firebasestorage.app',
-  messagingSenderId: '392435116850',
-  appId: '1:392435116850:web:00dece6890f6567697052b'
+  apiKey: 'AIzaSyDuzUYbLooj2HJqhnriK-WOIiFSHJawbZU',
+  authDomain: 'fit5032-week6-12aca.firebaseapp.com',
+  projectId: 'fit5032-week6-12aca',
+  storageBucket: 'fit5032-week6-12aca.firebasestorage.app',
+  messagingSenderId: '840951311961',
+  appId: '1:840951311961:web:fda5fc52662989f92bcb48'
 }
 
 // Initialize Firebase
