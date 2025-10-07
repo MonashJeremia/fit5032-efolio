@@ -2,7 +2,7 @@
   <div id="app">
     <h1>Book Counter</h1>
     <button @click="getBookCount">Get Book Count</button>
-    <p v-if="bookCount !== null">Total number of Books: {{ count }}</p>
+    <p v-if="count !== null">Total number of Books: {{ count }}</p>
     <p v-if="error">{{ error }}</p>
   </div>
 </template>
@@ -20,12 +20,14 @@ export default {
   methods: {
     async getBookCount() {
       try {
-        const response = await axios.get('http://localhost:3000/api/bookcount')
-        this.bookCount = response.data.count
+        console.log('Fetching book count from Firebase function...')
+        const response = await axios.get('https://countbooks-bixa3mmbqq-uc.a.run.app')
+        console.log('Response:', response.data)
+        this.count = response.data.count
         this.error = null
       } catch (error) {
-        this.error('Error fetching book count:', error)
-        this.error = error
+        console.error('Error fetching book count:', error)
+        this.error = 'Error fetching book count: ' + error.message
         this.count = null
       }
     }

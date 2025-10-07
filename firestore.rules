@@ -1,0 +1,16 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow read/write access on all documents to any user signed in to the application
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // For development: temporarily allow all reads and writes
+    // WARNING: This should be restricted in production!
+    match /books/{bookId} {
+      allow read, write: if true;
+    }
+  }
+}

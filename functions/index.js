@@ -12,7 +12,12 @@ const {onRequest} = require("firebase-functions/v2/https");
 const admin = require("firebase-admin");
 const cors = require("cors")({origin: true});
 
-admin.initializeApp();
+// Initialize admin with error handling
+try {
+  admin.initializeApp();
+} catch (error) {
+  console.error("Firebase admin initialization error:", error);
+}
 
 // For cost control, you can set the maximum number of containers that can be
 // running at the same time. This helps mitigate the impact of unexpected
@@ -33,17 +38,25 @@ setGlobalOptions({maxInstances: 10});
 //   response.send("Hello from Firebase!");
 // });
 
-exports.countBooks = onRequest((req, res) => {
-  cors(req, res, async () => {
-    try {
-      const booksCollection = admin.firestore().collection("books");
-      const snapshot = await booksCollection.get();
-      const count = snapshot.size;
+exports.countBooks = onRequest(
+    {
+      timeoutSeconds: 60,
+      memory: "256MiB",
+    },
+    (req, res) => {
+      cors(req, res, async () => {
+        try {
+          console.log("countBooks function started");
+          const booksCollection = admin.firestore().collection("books");
+          const snapshot = await booksCollection.get();
+          const count = snapshot.size;
 
-      res.status(200).send({count});
-    } catch (error) {
-      console.error("Error counting books:", error.message);
-      res.status(500).send("Error counting books");
-    }
-  });
-});
+          console.log("Books count:", count);
+          res.status(200).send({count});
+        } catch (error) {
+          console.error("Error counting books:", error.message);
+          res.status(500).send("Error counting books");
+        }
+      });
+    },
+);
